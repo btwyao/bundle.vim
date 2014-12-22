@@ -10,6 +10,19 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+" IDE features
+Plugin 'majutsushi/tagbar'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'scrooloose/syntastic'
+
+" Code completion
+Plugin 'Valloric/YouCompleteMe'
+
+" Fast navigation
+Plugin 'edsono/vim-matchit'
+Plugin 'Lokaltog/vim-easymotion'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -27,7 +40,10 @@ filetype plugin indent on    " required
 
 " enable syntax hightlight and completion
 syntax on
+let mapleader = 'f'
 
+" color scheme
+set background=dark
 
 " highlight current line
 au WinLeave * set nocursorline
@@ -55,6 +71,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" w!! to sudo & write a file
+cmap w!! %!sudo tee >/dev/null %
+
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
       \ if ! exists("g:leave_my_cursor_position_alone") |
@@ -64,3 +83,18 @@ autocmd BufReadPost *
       \ endif
 
 nnoremap ; :
+
+" tagbar
+let g:tagbar_left=1
+let g:tagbar_width=30
+let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
+let g:tagbar_compact = 1
+nmap <F5> :TagbarToggle<cr>
+
+" ctrlp
+set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+
+" easy-motion
+let g:EasyMotion_leader_key = '<Leader>'
