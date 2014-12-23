@@ -17,7 +17,9 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'scrooloose/syntastic'
 
 " Code completion
-Plugin 'Valloric/YouCompleteMe'
+Bundle 'Shougo/neocomplcache'
+Bundle 'Raimondi/delimitMate'
+Bundle 'ervandew/supertab'
 
 " Fast navigation
 Plugin 'edsono/vim-matchit'
@@ -53,9 +55,27 @@ set cursorline
 " search
 set hlsearch
 set ignorecase
+set smartcase
 noremap <F4> :set hlsearch! hlsearch?<CR>
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
+" editor settings
+set history=1000
+set nocompatible
+set nofoldenable                                                  " disable folding
+set confirm                                                       " prompt when existing from an unsaved file
+set backspace=indent,eol,start                                    " More powerful backspacing
+set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors
+set mouse=a                                                       " use mouse in all modes
+set report=0                                                      " always report number of lines changed
+set nowrap                                                        " dont wrap lines
+set scrolloff=5                                                   " 5 lines above/below cursor when scrolling
+set showmatch                                                     " show matching bracket (briefly jump)
+set showcmd                                                       " show typed command in status bar
+set title                                                         " show file in titlebar
+set laststatus=2                                                  " use 2 lines for the status bar
+set matchtime=2                                                   " show matching bracket for 0.2 seconds
+set matchpairs+=<:>                                               " specially for html"
 
 " Default Indentation
 set autoindent
@@ -98,3 +118,16 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " easy-motion
 let g:EasyMotion_leader_key = '<Leader>'
+
+" NeoComplCache
+let g:neocomplcache_enable_at_startup=1
+let g:neoComplcache_disableautocomplete=1
+let g:neocomplcache_enable_smart_case=1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_tags_caching_limit_file_size = 10000000
+set completeopt-=preview
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+let g:SuperTabRetainCompletionType=2
