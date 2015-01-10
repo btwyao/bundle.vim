@@ -43,7 +43,6 @@ filetype plugin indent on    " required
 
 " enable syntax hightlight and completion
 syntax on
-let mapleader = 'f'
 
 " color scheme
 set background=dark
@@ -55,6 +54,7 @@ set cursorline
 
 " search
 set hlsearch
+set incsearch
 set ignorecase
 set smartcase
 noremap <F4> :set hlsearch! hlsearch?<CR>
@@ -117,7 +117,8 @@ set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_S
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " easy-motion
-let g:EasyMotion_leader_key = '<Leader>'
+nmap f <Plug>(easymotion-f)
+nmap F <Plug>(easymotion-F)
 
 " NeoComplCache
 let g:neocomplcache_enable_at_startup=1
