@@ -115,6 +115,7 @@ nmap <F5> :TagbarToggle<cr>
 " ctrlp
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_switch_buffer = 0
 
 " easy-motion
 nmap f <Plug>(easymotion-f)
