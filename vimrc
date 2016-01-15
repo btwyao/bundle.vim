@@ -26,9 +26,6 @@ Bundle 'ervandew/supertab'
 Plugin 'edsono/vim-matchit'
 Plugin 'Lokaltog/vim-easymotion'
 
-" Chinese IM
-Plugin 'vim-scripts/VimIM'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -137,6 +134,5 @@ set completeopt-=preview
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
 
-" VimIM
-let g:Vimim_mode='static'
-let g:Vimim_punctuation=0
+" Syntastic
+let g:syntastic_c_include_dirs = [ '/home/wyao/work/act/3rd/lua/src' ]
