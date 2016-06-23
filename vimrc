@@ -45,6 +45,7 @@ filetype plugin indent on    " required
 syntax on
 
 " color scheme
+set t_Co=256
 set background=dark
 
 " highlight current line
@@ -116,6 +117,7 @@ nmap <F5> :TagbarToggle<cr>
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 'a'
 
 " easy-motion
 nmap f <Plug>(easymotion-f)
