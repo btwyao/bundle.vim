@@ -19,11 +19,12 @@ Plugin 'mileszs/ack.vim'
 
 " Code completion
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ervandew/supertab'
 
 " Fast navigation
-Plugin 'edsono/vim-matchit'
 Plugin 'Lokaltog/vim-easymotion'
 
 " go
@@ -109,7 +110,9 @@ autocmd BufReadPost *
 
 nnoremap ; :
 
+"
 " tagbar
+"
 let g:tagbar_left=1
 let g:tagbar_width=30
 let g:tagbar_autofocus = 1
@@ -144,17 +147,23 @@ let g:tagbar_type_go = {
 \ }  
 nmap <F5> :TagbarToggle<cr>
 
+"
 " ctrlp
+"
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 'a'
 
+"
 " easy-motion
+"
 nmap f <Plug>(easymotion-f)
 nmap F <Plug>(easymotion-F)
 
+"
 " neocomplete.vim
+"
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -191,6 +200,8 @@ function! s:my_cr_function()
   " For no inserting <CR> key.
   "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
+" <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
@@ -216,14 +227,44 @@ let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
 
+"
+" neosnippet
+"
+
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+"
 " SuperTab
+"
 let g:SuperTabDefaultCompletionType = '<C-X><C-O>'
 let g:SuperTabRetainCompletionType=2
 
+"
 " Syntastic
-" let g:syntastic_c_include_dirs = [ '/home/wyao/work/act/3rd/lua/src' ]
+"
+" let g:syntastic_c_include_dirs = [ '/lua/src' ]
 
+"
 " vim-go
+"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_autosave = 0
 let g:go_play_open_browser = 0
